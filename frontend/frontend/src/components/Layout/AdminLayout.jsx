@@ -19,7 +19,7 @@ function SidebarContent({ collapsed, user, menuItems, isActive, handleLogout, on
             <img
               src={casaticMoonLogo}
               alt="CASATIC"
-              className="h-full w-full object-contain"
+              className="h-full w-full object-contain brightness-0 invert"
             />
           </div>
         ) : (
