@@ -66,7 +66,7 @@ export default function CompanyFilters({
           ))}
         </select>
 
-        <details className="relative group">
+        <details className="relative group open:z-50">
           <summary className="input-field h-11 list-none cursor-pointer flex items-center justify-between gap-2 text-sm">
             <span className="inline-flex items-center gap-2 min-w-0">
               <Filter size={15} className="text-surface-400" />
@@ -78,7 +78,7 @@ export default function CompanyFilters({
             </span>
             <ChevronDown size={15} className="text-surface-400 transition-transform group-open:rotate-180" />
           </summary>
-          <div className="absolute right-0 z-30 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-surface-200 bg-white shadow-elevated p-3">
+          <div className="absolute right-0 z-50 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-surface-200 bg-white shadow-elevated p-3">
             <div className="flex items-center justify-between gap-3 border-b border-surface-100 pb-2 mb-2">
               <p className="text-xs font-bold uppercase tracking-wide text-surface-500">Especialidades</p>
               {selectedEspecialidades.length > 0 && (
