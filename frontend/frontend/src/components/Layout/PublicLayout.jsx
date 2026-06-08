@@ -139,9 +139,9 @@ export default function PublicLayout() {
               <div className="flex items-center gap-2">
                 {[
                   { href: 'https://www.facebook.com/casatic/', Icon: Facebook, label: 'Facebook' },
-                  { href: 'https://www.linkedin.com/company/casatic/', Icon: Linkedin, label: 'LinkedIn' },
-                  { href: 'https://www.instagram.com/casaticsv/', Icon: Instagram, label: 'Instagram' },
-                  { href: 'https://www.youtube.com/@casaticsv', Icon: Youtube, label: 'YouTube' },
+                  { href: 'https://www.linkedin.com/company/casatic-oficial/', Icon: Linkedin, label: 'LinkedIn' },
+                  { href: 'https://www.instagram.com/casatic.sv/', Icon: Instagram, label: 'Instagram' },
+                  { href: 'https://www.youtube.com/@camarasalvadorenadetecnolo7301', Icon: Youtube, label: 'YouTube' },
                 ].map(({ href, Icon, label }) => (
                   <a
                     key={label}
