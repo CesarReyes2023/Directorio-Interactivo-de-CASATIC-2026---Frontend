@@ -146,11 +146,11 @@ export default function MiEmpresaPage() {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* ── Header ────────────────────────────────────── */}
       <div className="flex items-center gap-3">
-        <div className="w-11 h-11 bg-casatic-100 rounded-2xl flex items-center justify-center">
+        <div className="w-11 h-11 bg-casatic-100 dark:bg-casatic-900/30 rounded-2xl flex items-center justify-center">
           <Building2 size={22} className="text-casatic-600" />
         </div>
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-surface-900">Mi Empresa</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Mi Empresa</h1>
           <p className="text-sm text-surface-500">Gestiona la información de tu empresa</p>
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function MiEmpresaPage() {
               <input
                 type="text" required value={form.slug}
                 onChange={handleChange('slug')}
-                className="input-field font-mono text-sm bg-surface-50"
+                className="input-field font-mono text-sm bg-surface-50 dark:bg-surface-800"
               />
             </div>
             <div className="md:col-span-2">

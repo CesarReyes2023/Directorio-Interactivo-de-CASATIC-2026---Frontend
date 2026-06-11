@@ -167,11 +167,11 @@ export default function SocioFormPage() {
           <ArrowLeft size={20} />
         </button>
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 bg-casatic-100 rounded-2xl flex items-center justify-center">
+          <div className="w-11 h-11 bg-casatic-100 dark:bg-casatic-900/30 rounded-2xl flex items-center justify-center">
             <Building2 size={22} className="text-casatic-600" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-surface-900">
+            <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">
               {isEdit ? 'Editar Socio' : 'Nuevo Socio'}
             </h1>
             <p className="text-sm text-surface-500">Configuración del perfil corporativo</p>
@@ -205,7 +205,7 @@ export default function SocioFormPage() {
               <input
                 type="text" required value={form.slug}
                 onChange={handleChange('slug')}
-                className="input-field font-mono text-sm bg-surface-50"
+                className="input-field font-mono text-sm bg-surface-50 dark:bg-surface-800"
               />
             </div>
             <div className="md:col-span-2">

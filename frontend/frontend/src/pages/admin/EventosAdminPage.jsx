@@ -100,8 +100,8 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-card p-6 border border-surface-100">
-      <h3 className="text-lg font-bold text-surface-900 mb-4">Crear Nuevo Evento</h3>
+    <div className="bg-white dark:bg-surface-900 rounded-2xl shadow-card p-6 border border-surface-100 dark:border-surface-700">
+      <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-4">Crear Nuevo Evento</h3>
 
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-center gap-2">
@@ -114,7 +114,7 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
           {/* Socio — oculto para socios, dropdown para admin */}
           {!isSocio && (
             <div>
-              <label className="block text-sm font-semibold text-surface-700 mb-1">Socio *</label>
+              <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Socio *</label>
               <select name="socioId" value={form.socioId} onChange={handleChange} required className="input-field w-full">
                 <option value="">Selecciona un socio</option>
                 {socios.map(s => (
@@ -125,7 +125,7 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
           )}
 
           <div className={isSocio ? 'md:col-span-2' : ''}>
-            <label className="block text-sm font-semibold text-surface-700 mb-1">Título *</label>
+            <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Título *</label>
             <input
               type="text" name="titulo" value={form.titulo} onChange={handleChange}
               required className="input-field w-full" placeholder="Título del evento"
@@ -134,7 +134,7 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-surface-700 mb-1">Descripción *</label>
+          <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Descripción *</label>
           <textarea
             name="descripcion" value={form.descripcion} onChange={handleChange}
             required rows="4" className="input-field w-full" placeholder="Describe el evento"
@@ -143,13 +143,13 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-surface-700 mb-1">Tipo *</label>
+            <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Tipo *</label>
             <select name="tipo" value={form.tipo} onChange={handleChange} className="input-field w-full">
               {TIPOS.map(t => <option key={t} value={t}>{TIPO_LABELS[t]}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-surface-700 mb-1">Modalidad *</label>
+            <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Modalidad *</label>
             <select name="modalidad" value={form.modalidad} onChange={handleChange} className="input-field w-full">
               {MODALIDADES.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
             </select>
@@ -158,14 +158,14 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-surface-700 mb-1">Fecha de Inicio *</label>
+            <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Fecha de Inicio *</label>
             <input
               type="datetime-local" name="fechaInicio" value={form.fechaInicio}
               onChange={handleChange} required className="input-field w-full"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-surface-700 mb-1">Fecha de Fin</label>
+            <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Fecha de Fin</label>
             <input
               type="datetime-local" name="fechaFin" value={form.fechaFin}
               onChange={handleChange} className="input-field w-full"
@@ -174,7 +174,7 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-surface-700 mb-1">Lugar</label>
+          <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Lugar</label>
           <input
             type="text" name="lugar" value={form.lugar} onChange={handleChange}
             className="input-field w-full" placeholder="Dirección o enlace del evento"
@@ -183,7 +183,7 @@ function EventoForm({ socios, onSave, onCancel, defaultSocioId = '', isSocio = f
 
         {/* Imagen */}
         <div>
-          <label className="block text-sm font-semibold text-surface-700 mb-1">Imagen del evento</label>
+          <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Imagen del evento</label>
           <input
             ref={fileInputRef}
             type="file"
@@ -261,12 +261,12 @@ function EventoRow({ evento, onAprobar, onRechazar, onEliminar, onExpand, expand
 
   return (
     <>
-      <tr className="border-b border-surface-100 hover:bg-casatic-50 transition-colors">
+      <tr className="border-b border-surface-100 dark:border-surface-800 hover:bg-casatic-50 dark:hover:bg-casatic-900/20 transition-colors">
         <td className="px-4 py-3">
-          <div className="font-semibold text-surface-900 text-sm">{evento.titulo}</div>
+          <div className="font-semibold text-surface-900 dark:text-white text-sm">{evento.titulo}</div>
           {isAdmin && <div className="text-xs text-surface-500 mt-0.5">{evento.socioNombre}</div>}
         </td>
-        <td className="px-4 py-3 text-sm text-surface-600 whitespace-nowrap">
+        <td className="px-4 py-3 text-sm text-surface-600 dark:text-surface-400 whitespace-nowrap">
           <span className="inline-flex items-center gap-1">
             <Calendar size={13} /> {new Date(evento.fechaInicio).toLocaleDateString('es-SV')}
           </span>
@@ -304,16 +304,16 @@ function EventoRow({ evento, onAprobar, onRechazar, onEliminar, onExpand, expand
         </td>
       </tr>
       {expanded && (
-        <tr className="bg-surface-50 border-b border-surface-100">
+        <tr className="bg-surface-50 dark:bg-surface-800/50 border-b border-surface-100 dark:border-surface-800">
           <td colSpan="4" className="px-4 py-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="md:col-span-2">
-                <span className="font-semibold text-surface-700">Descripción:</span>
-                <p className="text-surface-600 mt-1">{evento.descripcion}</p>
+                <span className="font-semibold text-surface-700 dark:text-surface-200">Descripción:</span>
+                <p className="text-surface-600 dark:text-surface-400 mt-1">{evento.descripcion}</p>
               </div>
               <div className="space-y-2">
-                <div><span className="font-semibold text-surface-700">Tipo: </span><span className="text-surface-600">{TIPO_LABELS[evento.tipo] ?? evento.tipo}</span></div>
-                <div><span className="font-semibold text-surface-700">Modalidad: </span><span className="text-surface-600">{MODALIDADES.find(m => m.value === evento.modalidad)?.label ?? evento.modalidad}</span></div>
+                <div><span className="font-semibold text-surface-700 dark:text-surface-200">Tipo: </span><span className="text-surface-600 dark:text-surface-400">{TIPO_LABELS[evento.tipo] ?? evento.tipo}</span></div>
+                <div><span className="font-semibold text-surface-700 dark:text-surface-200">Modalidad: </span><span className="text-surface-600 dark:text-surface-400">{MODALIDADES.find(m => m.value === evento.modalidad)?.label ?? evento.modalidad}</span></div>
                 {evento.lugar && (
                   <div className="flex items-start gap-1">
                     <MapPin size={13} className="mt-0.5 text-surface-500 flex-shrink-0" />

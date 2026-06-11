@@ -41,24 +41,24 @@ function formatNum(n) {
 /* ─── Skeleton Components ────────────────────────────────── */
 function KpiSkeleton() {
   return (
-    <div className="bg-white rounded-2xl border border-surface-100 p-5 animate-pulse">
+    <div className="bg-white dark:bg-surface-900 rounded-2xl border border-surface-100 dark:border-surface-800 p-5 animate-pulse">
       <div className="flex items-center justify-between mb-3">
-        <div className="w-10 h-10 bg-surface-100 rounded-xl" />
-        <div className="w-16 h-5 bg-surface-100 rounded-full" />
+        <div className="w-10 h-10 bg-surface-100 dark:bg-surface-700 rounded-xl" />
+        <div className="w-16 h-5 bg-surface-100 dark:bg-surface-700 rounded-full" />
       </div>
-      <div className="w-20 h-8 bg-surface-100 rounded mb-1" />
-      <div className="w-32 h-4 bg-surface-100 rounded" />
+      <div className="w-20 h-8 bg-surface-100 dark:bg-surface-700 rounded mb-1" />
+      <div className="w-32 h-4 bg-surface-100 dark:bg-surface-700 rounded" />
     </div>
   );
 }
 
 function ChartSkeleton() {
   return (
-    <div className="bg-white rounded-2xl border border-surface-100 p-6 animate-pulse">
-      <div className="w-48 h-5 bg-surface-100 rounded mb-6" />
+    <div className="bg-white dark:bg-surface-900 rounded-2xl border border-surface-100 dark:border-surface-800 p-6 animate-pulse">
+      <div className="w-48 h-5 bg-surface-100 dark:bg-surface-700 rounded mb-6" />
       <div className="flex items-end gap-1.5 h-40">
         {Array.from({ length: 15 }).map((_, i) => (
-          <div key={i} className="flex-1 bg-surface-100 rounded-t" style={{ height: `${20 + Math.random() * 80}%` }} />
+          <div key={i} className="flex-1 bg-surface-100 dark:bg-surface-700 rounded-t" style={{ height: `${20 + Math.random() * 80}%` }} />
         ))}
       </div>
     </div>
@@ -67,15 +67,15 @@ function ChartSkeleton() {
 
 function TableSkeleton({ cols = 3, rows = 5 }) {
   return (
-    <div className="bg-white rounded-2xl border border-surface-100 overflow-hidden animate-pulse">
-      <div className="px-6 py-4 border-b border-surface-100">
-        <div className="w-48 h-5 bg-surface-100 rounded" />
+    <div className="bg-white dark:bg-surface-900 rounded-2xl border border-surface-100 dark:border-surface-800 overflow-hidden animate-pulse">
+      <div className="px-6 py-4 border-b border-surface-100 dark:border-surface-800">
+        <div className="w-48 h-5 bg-surface-100 dark:bg-surface-700 rounded" />
       </div>
       <div className="p-6 space-y-3">
         {Array.from({ length: rows }).map((_, r) => (
           <div key={r} className="flex gap-4">
             {Array.from({ length: cols }).map((_, c) => (
-              <div key={c} className="flex-1 h-4 bg-surface-50 rounded" />
+              <div key={c} className="flex-1 h-4 bg-surface-50 dark:bg-surface-800 rounded" />
             ))}
           </div>
         ))}
@@ -99,7 +99,7 @@ function KpiCard({ icon: Icon, label, value, trend, trendLabel, color = 'casatic
   const isNeutral = trend === 0 || trend == null;
 
   return (
-    <div className="bg-white rounded-2xl border border-surface-100 p-5 shadow-sm hover:shadow-card transition-shadow duration-300 group">
+    <div className="bg-white dark:bg-surface-900 rounded-2xl border border-surface-100 dark:border-surface-800 p-5 shadow-sm hover:shadow-card transition-shadow duration-300 group">
       <div className="flex items-center justify-between mb-3">
         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${p.bg} ${p.text} ring-1 ${p.ring}`}>
           <Icon size={19} />
@@ -113,7 +113,7 @@ function KpiCard({ icon: Icon, label, value, trend, trendLabel, color = 'casatic
           </span>
         )}
       </div>
-      <p className="text-2xl font-bold text-surface-900 tracking-tight">{formatNum(value)}</p>
+      <p className="text-2xl font-bold text-surface-900 dark:text-white tracking-tight">{formatNum(value)}</p>
       <p className="text-sm text-surface-500 mt-0.5">{label}</p>
       {trendLabel && <p className="text-[11px] text-surface-400 mt-1">{trendLabel}</p>}
     </div>
@@ -190,8 +190,8 @@ function BarChart({ data, label = 'Visitas', height = 180 }) {
 /* ─── Section Panel ──────────────────────────────────────── */
 function Panel({ title, subtitle, icon: Icon, actions, children }) {
   return (
-    <div className="bg-white rounded-2xl border border-surface-100 shadow-sm overflow-hidden">
-      <div className="px-6 py-4 border-b border-surface-100 flex items-center justify-between gap-4">
+    <div className="bg-white dark:bg-surface-900 rounded-2xl border border-surface-100 dark:border-surface-800 shadow-sm overflow-hidden">
+      <div className="px-6 py-4 border-b border-surface-100 dark:border-surface-800 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 min-w-0">
           {Icon && (
             <div className="w-8 h-8 rounded-lg bg-casatic-50 text-casatic-600 flex items-center justify-center flex-shrink-0">
@@ -199,7 +199,7 @@ function Panel({ title, subtitle, icon: Icon, actions, children }) {
             </div>
           )}
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold text-surface-800 truncate">{title}</h2>
+            <h2 className="text-sm font-semibold text-surface-800 dark:text-surface-100 truncate">{title}</h2>
             {subtitle && <p className="text-xs text-surface-400">{subtitle}</p>}
           </div>
         </div>
@@ -227,17 +227,17 @@ function DataTable({ columns, rows, emptyIcon: EmptyIcon = FileText, emptyText =
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-surface-50/80">
+          <tr className="bg-surface-50/80 dark:bg-surface-800/50">
             {columns.map((col) => (
-              <th key={col.key} className={`text-left px-5 py-3 text-xs font-semibold text-surface-500 uppercase tracking-wider ${col.className || ''}`}>
+              <th key={col.key} className={`text-left px-5 py-3 text-xs font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-wider ${col.className || ''}`}>
                 {col.label}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-surface-50">
+        <tbody className="divide-y divide-surface-50 dark:divide-surface-800">
           {rows.map((row, idx) => (
-            <tr key={row._key ?? idx} className="hover:bg-casatic-50/30 transition-colors">
+            <tr key={row._key ?? idx} className="hover:bg-casatic-50/30 dark:hover:bg-casatic-900/20 transition-colors">
               {columns.map((col) => (
                 <td key={col.key} className={`px-5 py-3.5 ${col.cellClass || ''}`}>
                   {col.render ? col.render(row) : row[col.key]}
@@ -255,16 +255,16 @@ function DataTable({ columns, rows, emptyIcon: EmptyIcon = FileText, emptyText =
 function LoginBar({ email, count, maxCount }) {
   const width = maxCount ? (count / maxCount) * 100 : 0;
   return (
-    <div className="flex items-center gap-4 px-6 py-3 hover:bg-casatic-50/30 transition-colors">
+    <div className="flex items-center gap-4 px-6 py-3 hover:bg-casatic-50/30 dark:hover:bg-casatic-900/20 transition-colors">
       <div className="w-8 h-8 rounded-lg bg-casatic-50 text-casatic-600 flex items-center justify-center flex-shrink-0">
         <UserCheck size={14} />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm text-surface-800 truncate">{email}</span>
+          <span className="text-sm text-surface-800 dark:text-surface-100 truncate">{email}</span>
           <span className="text-sm font-bold text-casatic-600 ml-3">{count}</span>
         </div>
-        <div className="w-full bg-surface-100 rounded-full h-1.5">
+        <div className="w-full bg-surface-100 dark:bg-surface-700 rounded-full h-1.5">
           <div
             className="bg-gradient-to-r from-casatic-500 to-casatic-400 h-1.5 rounded-full transition-all duration-500"
             style={{ width: `${width}%` }}
@@ -448,7 +448,7 @@ export default function ReportesPage() {
             <BarChart2 size={22} className="text-white" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-surface-900 tracking-tight">Reportes y Métricas</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white tracking-tight">Reportes y Métricas</h1>
             <p className="text-sm text-surface-400">Panel de análisis · Últimos 30 días</p>
           </div>
         </div>
@@ -481,19 +481,19 @@ export default function ReportesPage() {
       {/* ── Modal Importar Excel ───────────────────────── */}
       {importModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => !importing && setImportModal(false)}>
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 space-y-5 animate-fade-in-up" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white dark:bg-surface-900 rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 space-y-5 animate-fade-in-up" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-casatic-50 rounded-xl flex items-center justify-center text-casatic-600">
                 <FileSpreadsheet size={20} />
               </div>
               <div>
-                <h3 className="font-semibold text-surface-900">Importar Socios desde Excel</h3>
+                <h3 className="font-semibold text-surface-900 dark:text-white">Importar Socios desde Excel</h3>
                 <p className="text-xs text-surface-400">Archivo .xlsx · Máx 10 MB</p>
               </div>
             </div>
 
-            <div className="bg-surface-50 rounded-xl p-4 text-xs text-surface-600 space-y-1">
-              <p className="font-semibold text-surface-700 mb-1">Columnas esperadas:</p>
+            <div className="bg-surface-50 dark:bg-surface-800 rounded-xl p-4 text-xs text-surface-600 dark:text-surface-400 space-y-1">
+              <p className="font-semibold text-surface-700 dark:text-surface-200 mb-1">Columnas esperadas:</p>
               <p><span className="font-medium text-casatic-600">Requerida:</span> NombreEmpresa</p>
               <p><span className="font-medium text-surface-500">Opcionales:</span> EmailContacto, Teléfono, Dirección, Descripción, Especialidades, Servicios, MarcasRepresenta, EstadoFinanciero, Habilitado, MapaUrl</p>
               <p className="text-surface-400 mt-2">Si el socio ya existe (por nombre), se actualizan sus datos.</p>
@@ -549,7 +549,7 @@ export default function ReportesPage() {
       )}
 
       {/* ── Tab Navigation ─────────────────────────────── */}
-      <div className="bg-white rounded-xl border border-surface-100 p-1 flex gap-1 overflow-x-auto shadow-sm">
+      <div className="bg-white dark:bg-surface-900 rounded-xl border border-surface-100 dark:border-surface-800 p-1 flex gap-1 overflow-x-auto shadow-sm">
         {tabs.map(t => (
           <button
             key={t.id}
@@ -557,7 +557,7 @@ export default function ReportesPage() {
             className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-all ${
               tab === t.id
                 ? 'bg-casatic-600 text-white shadow-md shadow-casatic-600/20'
-                : 'text-surface-500 hover:text-surface-700 hover:bg-surface-50'
+                : 'text-surface-500 dark:text-surface-400 hover:text-surface-700 dark:hover:text-surface-200 hover:bg-surface-50 dark:hover:bg-surface-800'
             }`}
           >
             <t.icon size={15} /> {t.label}
@@ -634,7 +634,7 @@ export default function ReportesPage() {
                 subtitle="Últimos 30 días"
                 icon={TrendingUp}
                 actions={
-                  <span className="text-xs text-surface-400 bg-surface-50 px-2.5 py-1 rounded-full">
+                  <span className="text-xs text-surface-400 dark:text-surface-500 bg-surface-50 dark:bg-surface-800 px-2.5 py-1 rounded-full">
                     Total: <span className="font-semibold text-surface-600">{formatNum(visitasTotal)}</span>
                   </span>
                 }

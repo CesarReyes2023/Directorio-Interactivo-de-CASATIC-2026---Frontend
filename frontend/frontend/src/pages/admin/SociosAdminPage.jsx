@@ -88,11 +88,11 @@ export default function SociosAdminPage() {
       {/* ── Header ────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 bg-casatic-100 rounded-2xl flex items-center justify-center">
+          <div className="w-11 h-11 bg-casatic-100 dark:bg-casatic-900/30 rounded-2xl flex items-center justify-center">
             <Building2 size={22} className="text-casatic-600" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-surface-900">Gestión de Socios</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Gestión de Socios</h1>
             <p className="text-sm text-surface-500">{socios.length} empresas registradas</p>
           </div>
         </div>
@@ -190,7 +190,7 @@ export default function SociosAdminPage() {
       ) : filtered.length === 0 ? (
         <div className="card-base py-16 text-center">
           <Building2 size={40} className="mx-auto mb-3 text-surface-300" />
-          <h3 className="text-lg font-bold text-surface-700">Sin coincidencias</h3>
+          <h3 className="text-lg font-bold text-surface-700 dark:text-surface-200">Sin coincidencias</h3>
           <p className="text-sm text-surface-400 mt-1">Intenta con otro término de búsqueda</p>
         </div>
       ) : (
@@ -198,7 +198,7 @@ export default function SociosAdminPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-surface-50 border-b border-surface-100">
+                <tr className="bg-surface-50 dark:bg-surface-800/50 border-b border-surface-100 dark:border-surface-800">
                   <th className="table-th">Empresa</th>
                   <th className="table-th text-center">Slug</th>
                   <th className="table-th text-center">Situación</th>
@@ -211,7 +211,7 @@ export default function SociosAdminPage() {
                   <tr key={socio.id} className="table-row">
                     <td className="table-td">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white border border-surface-200 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <div className="w-10 h-10 bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0">
                           {socio.logoUrl ? (
                             <img
                               src={socio.logoUrl}
@@ -237,12 +237,12 @@ export default function SociosAdminPage() {
                             </span>
                           </div>
                         </div>
-                        <span className="font-medium text-surface-800">{socio.nombreEmpresa}</span>
+                        <span className="font-medium text-surface-800 dark:text-surface-100">{socio.nombreEmpresa}</span>
                       </div>
                     </td>
 
                     <td className="table-td text-center">
-                      <span className="font-mono text-xs text-surface-400 bg-surface-50 px-2.5 py-1 rounded-lg border border-surface-100">
+                      <span className="font-mono text-xs text-surface-400 dark:text-surface-500 bg-surface-50 dark:bg-surface-800 px-2.5 py-1 rounded-lg border border-surface-100 dark:border-surface-700">
                         /{socio.slug}
                       </span>
                     </td>

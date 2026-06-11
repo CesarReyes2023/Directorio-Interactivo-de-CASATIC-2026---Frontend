@@ -93,12 +93,12 @@ async function importFacturas(file, onSave) {
 function FacturaCard({ factura, onEdit, isAdmin }) {
   const Icon = estadoIcon(factura.estado);
   return (
-    <div className="card-base p-6 sm:p-7 bg-gradient-to-br from-white to-surface-50 border-2 border-surface-100 hover:border-casatic-200 hover:shadow-lg transition-colors group">
+    <div className="card-base p-6 sm:p-7 bg-gradient-to-br from-white to-surface-50 dark:from-surface-900 dark:to-surface-800 border-2 border-surface-100 dark:border-surface-700 hover:border-casatic-200 hover:shadow-lg transition-colors group">
       <div className="flex flex-col gap-5">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-xs uppercase tracking-widest text-casatic-600 font-bold mb-1">Empresa</p>
-            <h3 className="text-xl font-bold text-surface-900 mb-2.5 truncate group-hover:text-casatic-700 transition-colors">{factura.socioNombre || 'Sin empresa'}</h3>
+            <h3 className="text-xl font-bold text-surface-900 dark:text-white mb-2.5 truncate group-hover:text-casatic-700 transition-colors">{factura.socioNombre || 'Sin empresa'}</h3>
             <div className="flex items-center gap-2.5 flex-wrap">
               <span className="font-mono text-xs font-bold bg-casatic-100 text-casatic-700 px-3 py-1.5 rounded-lg ring-1 ring-casatic-200">
                 {factura.numero}
@@ -113,24 +113,24 @@ function FacturaCard({ factura, onEdit, isAdmin }) {
             <p className="text-2xl font-extrabold text-casatic-700">{money(factura.total)}</p>
           </div>
         </div>
-        <div className="bg-surface-50 rounded-lg p-4 border border-surface-100">
-          <p className="text-sm font-semibold text-surface-900 mb-3">{factura.descripcion}</p>
+        <div className="bg-surface-50 dark:bg-surface-800 rounded-lg p-4 border border-surface-100 dark:border-surface-700">
+          <p className="text-sm font-semibold text-surface-900 dark:text-white mb-3">{factura.descripcion}</p>
           <div className="grid grid-cols-2 gap-3 text-xs">
             <div>
               <p className="text-surface-500 font-medium mb-0.5">Plan</p>
-              <p className="font-bold text-surface-800">{factura.planNombre}</p>
+              <p className="font-bold text-surface-800 dark:text-surface-100">{factura.planNombre}</p>
             </div>
             <div>
               <p className="text-surface-500 font-medium mb-0.5">Período</p>
-              <p className="font-bold text-surface-800">{factura.planPeriodo}</p>
+              <p className="font-bold text-surface-800 dark:text-surface-100">{factura.planPeriodo}</p>
             </div>
             <div>
               <p className="text-surface-500 font-medium mb-0.5">Vence</p>
-              <p className="font-bold text-surface-800">{toDateInput(factura.fechaVencimiento)}</p>
+              <p className="font-bold text-surface-800 dark:text-surface-100">{toDateInput(factura.fechaVencimiento)}</p>
             </div>
             <div>
               <p className="text-surface-500 font-medium mb-0.5">DTE</p>
-              <p className="font-bold text-surface-800">{factura.selloRecepcion ? 'Con sello' : 'Interna'}</p>
+              <p className="font-bold text-surface-800 dark:text-surface-100">{factura.selloRecepcion ? 'Con sello' : 'Interna'}</p>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ function FacturaCard({ factura, onEdit, isAdmin }) {
         </div>
 
         {factura.numeroControl && (
-          <div className="text-xs font-mono text-surface-500 bg-surface-100 p-2.5 rounded-lg truncate ring-1 ring-surface-200">
+          <div className="text-xs font-mono text-surface-500 dark:text-surface-400 bg-surface-100 dark:bg-surface-800 p-2.5 rounded-lg truncate ring-1 ring-surface-200 dark:ring-surface-700">
             {factura.numeroControl}
           </div>
         )}
@@ -162,7 +162,7 @@ function FacturaCard({ factura, onEdit, isAdmin }) {
               isAdmin ? `/facturacion/${factura.id}/descargar` : `/facturacion/mi-factura/${factura.id}/descargar`,
               `Factura-${factura.numero}.html`
             )}
-            className="flex-1 px-4 py-2.5 bg-surface-200 hover:bg-surface-300 text-surface-800 font-bold rounded-lg transition-all shadow-md hover:shadow-lg"
+            className="flex-1 px-4 py-2.5 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 text-surface-800 dark:text-surface-100 font-bold rounded-lg transition-all shadow-md hover:shadow-lg"
           >
             <Download size={16} className="inline mr-2" /> Descargar
           </button>
@@ -225,7 +225,7 @@ function FacturaForm({ factura, planes, socios, onSave, onCancel }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-md flex items-center justify-center p-4">
-      <form onSubmit={submit} className="bg-white w-full max-w-3xl rounded-3xl shadow-2xl border border-surface-100 overflow-hidden">
+      <form onSubmit={submit} className="bg-white dark:bg-surface-900 w-full max-w-3xl rounded-3xl shadow-2xl border border-surface-100 dark:border-surface-700 overflow-hidden">
         {/* Header Premium */}
         <div className="bg-gradient-to-r from-casatic-600 via-casatic-500 to-casatic-400 px-8 py-6 flex items-center justify-between border-b border-casatic-300">
           <div>
@@ -357,8 +357,8 @@ function FacturaForm({ factura, planes, socios, onSave, onCancel }) {
         </div>
 
         {/* Actions Footer */}
-        <div className="px-8 py-5 bg-gradient-to-r from-surface-50 to-white border-t border-surface-100 flex justify-end gap-3">
-          <button type="button" onClick={onCancel} className="px-6 py-2.5 bg-surface-200 hover:bg-surface-300 text-surface-800 font-bold rounded-lg transition-all shadow-md hover:shadow-lg">
+        <div className="px-8 py-5 bg-gradient-to-r from-surface-50 to-white dark:from-surface-800 dark:to-surface-900 border-t border-surface-100 dark:border-surface-700 flex justify-end gap-3">
+          <button type="button" onClick={onCancel} className="px-6 py-2.5 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 text-surface-800 dark:text-surface-100 font-bold rounded-lg transition-all shadow-md hover:shadow-lg">
             Cancelar
           </button>
           <button type="submit" disabled={saving} className="px-6 py-2.5 bg-casatic-500 hover:bg-casatic-600 disabled:opacity-60 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
@@ -535,7 +535,7 @@ export default function FacturacionPage() {
         {/* Premium Statistics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {/* Total */}
-            <div className="card-base p-5 bg-gradient-to-br from-casatic-50 to-white border-2 border-casatic-200 hover:shadow-md transition-shadow group">
+            <div className="card-base p-5 bg-gradient-to-br from-casatic-50 to-white dark:from-casatic-900/20 dark:to-surface-900 border-2 border-casatic-200 hover:shadow-md transition-shadow group">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-casatic-600">Total</p>
                 <div className="w-8 h-8 bg-casatic-100 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform text-casatic-600 font-bold">$</div>
@@ -545,7 +545,7 @@ export default function FacturacionPage() {
             </div>
             
             {/* Pagadas */}
-            <div className="card-base p-5 bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-200 hover:shadow-md transition-shadow group">
+            <div className="card-base p-5 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-900/20 dark:to-surface-900 border-2 border-emerald-200 hover:shadow-md transition-shadow group">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-emerald-600">Pagadas</p>
                 <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform"><CheckCircle2 size={16} className="text-emerald-600" /></div>
@@ -555,7 +555,7 @@ export default function FacturacionPage() {
             </div>
             
             {/* Vencidas */}
-            <div className="card-base p-5 bg-gradient-to-br from-red-50 to-white border-2 border-red-200 hover:shadow-md transition-shadow group">
+            <div className="card-base p-5 bg-gradient-to-br from-red-50 to-white dark:from-red-900/20 dark:to-surface-900 border-2 border-red-200 hover:shadow-md transition-shadow group">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-red-600">Vencidas</p>
                 <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform"><AlertTriangle size={16} className="text-red-600" /></div>
@@ -565,7 +565,7 @@ export default function FacturacionPage() {
             </div>
             
             {/* Pendientes */}
-            <div className="card-base p-5 bg-gradient-to-br from-amber-50 to-white border-2 border-amber-200 hover:shadow-md transition-shadow group">
+            <div className="card-base p-5 bg-gradient-to-br from-amber-50 to-white dark:from-amber-900/20 dark:to-surface-900 border-2 border-amber-200 hover:shadow-md transition-shadow group">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-amber-600">Pendientes</p>
                 <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform"><Clock size={16} className="text-amber-600" /></div>
@@ -580,7 +580,7 @@ export default function FacturacionPage() {
             <div className="card-base p-6">
               <div className="flex flex-col md:flex-row md:items-end gap-4">
                 <div className="flex-1">
-                  <label className="block text-sm font-semibold text-surface-700 mb-1">Socio</label>
+                  <label className="block text-sm font-semibold text-surface-700 dark:text-surface-300 mb-1">Socio</label>
                   <div className="relative">
                     <select
                       value={selectedSocioId}
@@ -615,7 +615,7 @@ export default function FacturacionPage() {
             </div>
           )}
           {/* Premium Filters & Search */}
-          <div className="card-base p-6 bg-gradient-to-r from-surface-50 to-white border-2 border-surface-100 rounded-2xl">
+          <div className="card-base p-6 bg-gradient-to-r from-surface-50 to-white dark:from-surface-800 dark:to-surface-900 border-2 border-surface-100 dark:border-surface-700 rounded-2xl">
             <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
               {/* Search */}
               <div className="flex-1 min-w-[220px] relative group">
@@ -626,15 +626,15 @@ export default function FacturacionPage() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Buscar empresa, número, descripción..."
-                  className="w-full pl-12 pr-4 py-3 bg-white border-2 border-surface-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-casatic-400 focus:border-transparent transition-all"
+                  className="w-full pl-12 pr-4 py-3 bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 rounded-xl text-sm font-medium text-surface-900 dark:text-surface-100 focus:outline-none focus:ring-2 focus:ring-casatic-400 focus:border-transparent transition-all"
                 />
               </div>
-              
+
               {/* Status Filter */}
               <select
                 value={filterEstado}
                 onChange={(e) => setFilterEstado(e.target.value)}
-                className="px-4 py-3 bg-white border-2 border-surface-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-casatic-400 focus:border-transparent transition-all cursor-pointer"
+                className="px-4 py-3 bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 rounded-xl text-sm font-medium text-surface-900 dark:text-surface-100 focus:outline-none focus:ring-2 focus:ring-casatic-400 focus:border-transparent transition-all cursor-pointer"
               >
                 <option value="">Todos los estados</option>
                 {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
@@ -658,12 +658,12 @@ export default function FacturacionPage() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="card-base py-24 text-center border-2 border-dashed border-surface-200 rounded-2xl bg-gradient-to-b from-surface-50 to-white">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-surface-200 rounded-2xl mb-4">
-            <Receipt size={32} className="text-surface-400" />
+        <div className="card-base py-24 text-center border-2 border-dashed border-surface-200 dark:border-surface-700 rounded-2xl bg-gradient-to-b from-surface-50 to-white dark:from-surface-800 dark:to-surface-900">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-surface-200 dark:bg-surface-700 rounded-2xl mb-4">
+            <Receipt size={32} className="text-surface-400 dark:text-surface-500" />
           </div>
-          <h3 className="text-xl font-bold text-surface-800 mb-2">Sin facturas</h3>
-          <p className="text-sm text-surface-600 max-w-xs mx-auto">
+          <h3 className="text-xl font-bold text-surface-800 dark:text-surface-100 mb-2">Sin facturas</h3>
+          <p className="text-sm text-surface-600 dark:text-surface-400 max-w-xs mx-auto">
             {debouncedSearch || filterEstado ? 'No hay registros que coincidan con los filtros aplicados.' : 'No hay facturas registradas aún.'}
           </p>
           {(debouncedSearch || filterEstado) && (
@@ -696,11 +696,11 @@ export default function FacturacionPage() {
         </div>
         <div className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-bold text-surface-700 mb-2">Filtrar por estado:</label>
+            <label className="block text-sm font-bold text-surface-700 dark:text-surface-300 mb-2">Filtrar por estado:</label>
             <select
               value={exportEstado}
               onChange={(e) => setExportEstado(e.target.value)}
-              className="w-full px-4 py-3 bg-white border-2 border-surface-200 rounded-lg font-semibold focus:outline-none focus:ring-2 focus:ring-casatic-400"
+              className="w-full px-4 py-3 bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 text-surface-900 dark:text-surface-100 rounded-lg font-semibold focus:outline-none focus:ring-2 focus:ring-casatic-400"
             >
               <option value="">Todas las facturas</option>
               {ESTADOS.map(e => <option key={e} value={e}>{e}</option>)}
@@ -712,7 +712,7 @@ export default function FacturacionPage() {
           <div className="flex gap-2 pt-2">
             <button
               onClick={() => document.getElementById('export-modal').close()}
-              className="flex-1 px-4 py-2 bg-surface-200 hover:bg-surface-300 text-surface-800 font-bold rounded-lg transition-colors"
+              className="flex-1 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 text-surface-800 dark:text-surface-100 font-bold rounded-lg transition-colors"
             >
               Cancelar
             </button>

@@ -34,11 +34,11 @@ function DetailModal({ item, onClose, isGeneral }) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-elevated w-full max-w-lg p-6 sm:p-8"
+        className="bg-white dark:bg-surface-900 rounded-2xl shadow-elevated w-full max-w-lg p-6 sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between mb-4">
-          <h2 className="text-lg font-bold text-surface-900">Detalle del mensaje</h2>
+          <h2 className="text-lg font-bold text-surface-900 dark:text-white">Detalle del mensaje</h2>
           <button onClick={onClose} className="btn-icon btn-ghost">
             <X size={18} />
           </button>
@@ -47,18 +47,18 @@ function DetailModal({ item, onClose, isGeneral }) {
           {!isGeneral && (
             <div className="flex gap-2">
               <span className="font-semibold text-surface-500 w-28 flex-shrink-0">Empresa:</span>
-              <span className="text-surface-900">{item.nombreEmpresa || '—'}</span>
+              <span className="text-surface-900 dark:text-surface-100">{item.nombreEmpresa || '—'}</span>
             </div>
           )}
           {isGeneral && item.asunto && (
             <div className="flex gap-2">
               <span className="font-semibold text-surface-500 w-28 flex-shrink-0">Asunto:</span>
-              <span className="text-surface-900">{item.asunto}</span>
+              <span className="text-surface-900 dark:text-surface-100">{item.asunto}</span>
             </div>
           )}
           <div className="flex gap-2">
             <span className="font-semibold text-surface-500 w-28 flex-shrink-0">Remitente:</span>
-            <span className="text-surface-900">{item.nombre}</span>
+            <span className="text-surface-900 dark:text-surface-100">{item.nombre}</span>
           </div>
           <div className="flex gap-2">
             <span className="font-semibold text-surface-500 w-28 flex-shrink-0">Correo:</span>
@@ -66,11 +66,11 @@ function DetailModal({ item, onClose, isGeneral }) {
           </div>
           <div className="flex gap-2">
             <span className="font-semibold text-surface-500 w-28 flex-shrink-0">Fecha:</span>
-            <span className="text-surface-600">{formatDate(item.fecha)}</span>
+            <span className="text-surface-600 dark:text-surface-400">{formatDate(item.fecha)}</span>
           </div>
           <div>
             <span className="font-semibold text-surface-500 block mb-1">Mensaje:</span>
-            <p className="bg-surface-50 rounded-xl p-4 text-surface-700 leading-relaxed whitespace-pre-wrap">
+            <p className="bg-surface-50 dark:bg-surface-800 rounded-xl p-4 text-surface-700 dark:text-surface-200 leading-relaxed whitespace-pre-wrap">
               {item.mensaje}
             </p>
           </div>
@@ -197,7 +197,7 @@ export default function FormulariosAdminPage() {
       {/* ── Header ──────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-surface-900">{pageTitle}</h1>
+          <h1 className="text-2xl font-bold text-surface-900 dark:text-white">{pageTitle}</h1>
           <p className="text-sm text-surface-500 mt-0.5">{pageDesc}</p>
         </div>
         <button onClick={load} className="btn-secondary btn-sm self-start sm:self-auto">
@@ -207,7 +207,7 @@ export default function FormulariosAdminPage() {
 
       {/* ── Tabs (solo Admin) ────────────────────────────── */}
       {isAdmin && (
-        <div className="flex gap-2 border-b border-surface-100">
+        <div className="flex gap-2 border-b border-surface-100 dark:border-surface-800">
           <button
             onClick={() => setTab('socios')}
             className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
@@ -256,7 +256,7 @@ export default function FormulariosAdminPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-surface-100 bg-surface-50">
+              <tr className="border-b border-surface-100 dark:border-surface-800 bg-surface-50 dark:bg-surface-800/50">
                 {[
                   { field: 'fecha', label: 'Fecha' },
                   { field: isGeneral ? 'asunto' : 'nombreEmpresa', label: isGeneral ? 'Asunto' : 'Empresa' },

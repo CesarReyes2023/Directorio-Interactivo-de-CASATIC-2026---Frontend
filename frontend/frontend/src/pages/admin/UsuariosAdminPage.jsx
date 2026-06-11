@@ -81,11 +81,11 @@ export default function UsuariosAdminPage() {
       {/* ── Header ────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 bg-casatic-100 rounded-2xl flex items-center justify-center">
+          <div className="w-11 h-11 bg-casatic-100 dark:bg-casatic-900/30 rounded-2xl flex items-center justify-center">
             <Users size={22} className="text-casatic-600" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-surface-900">Gestión de Usuarios</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Gestión de Usuarios</h1>
             <p className="text-sm text-surface-500">{usuarios.length} usuarios registrados</p>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function UsuariosAdminPage() {
               <UserPlus size={20} className="text-casatic-600" />
             </div>
             <div>
-              <h3 className="font-bold text-surface-900">Crear Nuevo Acceso</h3>
+              <h3 className="font-bold text-surface-900 dark:text-white">Crear Nuevo Acceso</h3>
               <p className="text-xs text-surface-400">
                 Se generará una contraseña temporal segura y el usuario deberá cambiarla en su primer login.
               </p>
@@ -180,7 +180,7 @@ export default function UsuariosAdminPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-surface-50 border-b border-surface-100">
+                <tr className="bg-surface-50 dark:bg-surface-800/50 border-b border-surface-100 dark:border-surface-800">
                   <th className="table-th">Usuario</th>
                   <th className="table-th">Nivel de Acceso</th>
                   <th className="table-th">Organización</th>
@@ -197,13 +197,13 @@ export default function UsuariosAdminPage() {
                         <div className="w-8 h-8 bg-casatic-500 rounded-lg flex items-center justify-center text-white font-bold text-xs">
                           {u.email?.charAt(0)?.toUpperCase()}
                         </div>
-                        <span className="text-sm text-surface-800">{u.email}</span>
+                        <span className="text-sm text-surface-800 dark:text-surface-100">{u.email}</span>
                       </div>
                     </td>
                     <td className="table-td">
                       <span className={`badge ${
                         u.rol === 'Admin'
-                          ? 'bg-purple-50 text-purple-600 ring-1 ring-inset ring-purple-200'
+                          ? 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 ring-1 ring-inset ring-purple-200 dark:ring-purple-800'
                           : 'badge-primary'
                       }`}>
                         {u.rol}
