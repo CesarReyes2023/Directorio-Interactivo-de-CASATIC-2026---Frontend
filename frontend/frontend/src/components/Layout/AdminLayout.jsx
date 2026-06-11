@@ -107,8 +107,9 @@ function NotificationBell({ user }) {
 
 /* ─── ProfileMenu ─────────────────────────────── */
 function ProfileMenu({ user, onLogout }) {
+  const avatarKey = `casatic_avatar_${user?.id || user?.email}`;
   const [open, setOpen] = useState(false);
-  const [avatar, setAvatar] = useState(() => localStorage.getItem(`casatic_avatar_${user?.id}`) || null);
+  const [avatar, setAvatar] = useState(() => localStorage.getItem(`casatic_avatar_${user?.id || user?.email}`) || null);
   const ref = useRef(null);
   const fileRef = useRef(null);
   const navigate = useNavigate();
@@ -123,17 +124,18 @@ function ProfileMenu({ user, onLogout }) {
   const handlePhoto = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    e.target.value = '';
     const reader = new FileReader();
     reader.onload = () => {
       const b64 = reader.result;
-      localStorage.setItem(`casatic_avatar_${user?.id}`, b64);
+      localStorage.setItem(avatarKey, b64);
       setAvatar(b64);
     };
     reader.readAsDataURL(file);
   };
 
   const removePhoto = () => {
-    localStorage.removeItem(`casatic_avatar_${user?.id}`);
+    localStorage.removeItem(avatarKey);
     setAvatar(null);
   };
 
@@ -142,6 +144,9 @@ function ProfileMenu({ user, onLogout }) {
 
   return (
     <div className="relative" ref={ref}>
+      {/* Input fuera del dropdown para que persista en DOM al cerrar el menú */}
+      <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handlePhoto} />
+
       <button
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-xl hover:bg-surface-100 dark:hover:bg-white/[0.06] transition-colors group"
@@ -191,13 +196,12 @@ function ProfileMenu({ user, onLogout }) {
                 </span>
               </div>
             </div>
-            <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handlePhoto} />
           </div>
 
           {/* Actions */}
           <div className="p-2 space-y-0.5">
             <button
-              onClick={() => { fileRef.current?.click(); setOpen(false); }}
+              onClick={() => fileRef.current?.click()}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-surface-700 dark:text-surface-300 hover:bg-surface-50 dark:hover:bg-white/[0.05] transition-colors text-left"
             >
               <Camera size={16} className="text-surface-400 dark:text-surface-500" />
