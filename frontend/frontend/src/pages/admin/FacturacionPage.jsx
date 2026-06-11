@@ -210,17 +210,26 @@ function FacturaForm({ factura, planes, socios, onSave, onCancel }) {
     }));
   };
 
+  const [submitError, setSubmitError] = useState('');
+
   const submit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    await onSave(factura.id, {
-      ...form,
-      subtotal: Number(form.subtotal),
-      fechaEmision: fromDateInput(form.fechaEmision),
-      fechaVencimiento: fromDateInput(form.fechaVencimiento),
-      fechaPago: form.estado === 'Pagada' ? fromDateInput(form.fechaPago || form.fechaEmision) : null,
-    });
-    setSaving(false);
+    setSubmitError('');
+    try {
+      await onSave(factura.id, {
+        ...form,
+        subtotal: Number(form.subtotal),
+        fechaEmision: fromDateInput(form.fechaEmision),
+        fechaVencimiento: fromDateInput(form.fechaVencimiento),
+        fechaPago: form.estado === 'Pagada' ? fromDateInput(form.fechaPago || form.fechaEmision) : null,
+      });
+    } catch (err) {
+      const msg = err.response?.data?.message || err.response?.data?.detail || err.message || 'Error al guardar';
+      setSubmitError(msg);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -357,13 +366,20 @@ function FacturaForm({ factura, planes, socios, onSave, onCancel }) {
         </div>
 
         {/* Actions Footer */}
-        <div className="px-8 py-5 bg-gradient-to-r from-surface-50 to-white dark:from-surface-800 dark:to-surface-900 border-t border-surface-100 dark:border-surface-700 flex justify-end gap-3">
+        <div className="px-8 py-5 bg-gradient-to-r from-surface-50 to-white dark:from-surface-800 dark:to-surface-900 border-t border-surface-100 dark:border-surface-700">
+          {submitError && (
+            <p className="text-sm text-red-600 font-semibold mb-3 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+              {submitError}
+            </p>
+          )}
+        <div className="flex justify-end gap-3">
           <button type="button" onClick={onCancel} className="px-6 py-2.5 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 text-surface-800 dark:text-surface-100 font-bold rounded-lg transition-all shadow-md hover:shadow-lg">
             Cancelar
           </button>
           <button type="submit" disabled={saving} className="px-6 py-2.5 bg-casatic-500 hover:bg-casatic-600 disabled:opacity-60 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
             <Save size={16} /> {saving ? 'Guardando...' : 'Guardar'}
           </button>
+        </div>
         </div>
       </form>
     </div>
